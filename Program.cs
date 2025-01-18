@@ -1,55 +1,66 @@
 ﻿﻿using System;
+
 namespace multiplication {
     class Program {
         static void Main(String[] args) {
 
+            Console.Title = "Multiplication";
+
+            int multiplicando;
+            int multiplicador;
+
             do {
-                try {
-                    Console.Clear();
-                    Console.WriteLine("Welcome back!");
-                    Console.WriteLine("Multiplicacion de dos numeros");
-                    Console.WriteLine("multiplicando x multiplicador = producto");
+            Console.Clear();
+            Console.WriteLine("Welcome back!");
+            Console.WriteLine("multiplicando x multiplicador = producto");
 
+
+                while(true) {
                     Console.WriteLine("Ingresa el multiplicando: ");
-                    int a = Int32.Parse(Console.ReadLine());
 
+                    if(int.TryParse(Console.ReadLine(), out multiplicando)) {
+                        break;
+                    } else {
+                        Console.WriteLine("Error: valor invalido...");
+                    }
+                }
+
+                while(true) {
                     Console.WriteLine("Ingresa el multiplicador: ");
-                    int b = Int32.Parse(Console.ReadLine());
+                    if(int.TryParse(Console.ReadLine(), out multiplicador)) {
+                        if(multiplicador >= 0) {
+                            break;
+                        } else {
+                            Console.WriteLine("El multiplicador no puede ser negativo...");
+                        }
+                    } else {
+                        Console.WriteLine("Error: valor invalido...");
+                    }
+                }
 
-                    Console.Clear();
-                    Console.WriteLine("Producto: " + Multiplication(a, b));
-                }
-                catch (FormatException) {
-                    Console.WriteLine("Error: Por favor, ingresa un número válido.");
-                }
-                catch (OverflowException) {
-                    Console.WriteLine("Error: El número ingresado es demasiado grande o demasiado pequeño.");
-                }
-                catch (Exception ex) {
-                    Console.WriteLine($"Ocurrió un error inesperado: {ex.Message}");
-                }
-            } while(Control() == true);
+                Console.WriteLine("Producto: " + CalcularMultiplicacion(multiplicando, multiplicador));
 
+            } while(ContinuarOperacion() == true);
         }
 
-        static Boolean Control() {
-            Console.Write("¿Deseas continuar? (s/n): ");
-            string respuesta = Console.ReadLine()?.ToLower();
+        static Boolean ContinuarOperacion() {
+            while(true) {
+                Console.Write("¿Deseas continuar? (S/n): ");
+                string respuestaSn = Console.ReadLine()?.ToLower();
+                
+                if(respuestaSn != "s" && respuestaSn != "n") {
+                    continue;
+                }
 
-            if(respuesta != "s" && respuesta != "n") {
-                return Control();
+                if(respuestaSn == "n") {
+                    return false;
+                }
+
+                return true;
             }
-
-            if(respuesta == "n") {
-                Console.Clear();
-                Console.WriteLine("Goob Bye!");
-                return false;
-            }
-
-            return true;
         }
 
-        static int Multiplication(int a, int b) {
+        static int CalcularMultiplicacion(int a, int b) {
             /*
                 1er caso base: Si 'a' es igual a '0' o 'b' es igual
                 a '0' entonces retorna '0'.
@@ -93,7 +104,7 @@ namespace multiplication {
 
             */
             if (b > 1) {
-                return a + Multiplication(a, b - 1);
+                return a + CalcularMultiplicacion(a, b - 1);
             }
             /*
                 2do caso base: Retorna el valor de 'a'.
@@ -103,18 +114,3 @@ namespace multiplication {
 
     }
 }
-/*
-    Los valores deben ser ingresados por teclado.
-    Validar los valores ingresados por el usuario.
-    Mostrar mensajes que hagan ilusion a lo que esta ocurriendo.
-    El usuario puede elegir si continuar o no el proceso s/n.
-    Solamente se pueden ingresar valores numericos.
-    EL fonde debe ser blanco.
-    Debe ejecutarse en la consola.
-    Debe tener un titulo.
-    Debe ser responsivo.
-    No debe mostrar errores.
-    El programa se va repetir cuantas veces lo requiera el usuario.
-    El programa puede finalizar cuando el usario lo decida.
-    Interfaz bonita.
-*/

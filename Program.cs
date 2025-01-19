@@ -6,35 +6,48 @@ namespace multiplication {
 
             Console.Title = "Multiplication";
 
-            int multiplicando;
-            int multiplicador;
+            long multiplicando;
+            long multiplicador;
 
             do {
             Console.Clear();
+
+            Console.SetCursorPosition(14,0);
             Console.WriteLine("Welcome back!");
+
+            Console.SetCursorPosition(0,2);
             Console.WriteLine("multiplicando x multiplicador = producto");
 
+            Console.SetCursorPosition(11,3);
+            Console.WriteLine("(Maximo 5 digitos)\n");
 
                 while(true) {
-                    Console.WriteLine("Ingresa el multiplicando: ");
+                    Console.Write("Ingresa el multiplicando: ");
 
-                    if(int.TryParse(Console.ReadLine(), out multiplicando)) {
-                        break;
+                    if(long.TryParse(Console.ReadLine(), out multiplicando) && multiplicando <= 99999) {
+                        if(multiplicando >= 0) {
+                            Console.WriteLine("> Valor ingresado correctamente\n");
+                            break;
+                        } else {
+                            Console.WriteLine("> El multiplicando no puede ser negativo...\n");
+                        }
                     } else {
-                        Console.WriteLine("Error: valor invalido...");
+                        Console.WriteLine("> Error: valor invalido...\n");
                     }
                 }
 
                 while(true) {
-                    Console.WriteLine("Ingresa el multiplicador: ");
-                    if(int.TryParse(Console.ReadLine(), out multiplicador)) {
+                    Console.Write("Ingresa el multiplicador: ");
+
+                    if(long.TryParse(Console.ReadLine(), out multiplicador) && multiplicador <= 99999) {
                         if(multiplicador >= 0) {
+                            Console.WriteLine("> Valor ingresado correctamente\n");
                             break;
                         } else {
-                            Console.WriteLine("El multiplicador no puede ser negativo...");
+                            Console.WriteLine("> El multiplicador no puede ser negativo...\n");
                         }
                     } else {
-                        Console.WriteLine("Error: valor invalido...");
+                        Console.WriteLine("> Error: valor invalido...\n");
                     }
                 }
 
@@ -45,7 +58,7 @@ namespace multiplication {
 
         static Boolean ContinuarOperacion() {
             while(true) {
-                Console.Write("¿Deseas continuar? (S/n): ");
+                Console.Write("\n¿Deseas continuar? (S/n): ");
                 string respuestaSn = Console.ReadLine()?.ToLower();
                 
                 if(respuestaSn != "s" && respuestaSn != "n") {
@@ -53,6 +66,8 @@ namespace multiplication {
                 }
 
                 if(respuestaSn == "n") {
+                    Console.Clear();
+                    Console.WriteLine("Good bye!");
                     return false;
                 }
 
@@ -60,7 +75,7 @@ namespace multiplication {
             }
         }
 
-        static int CalcularMultiplicacion(int a, int b) {
+        static long CalcularMultiplicacion(long a, long b) {
             /*
                 1er caso base: Si 'a' es igual a '0' o 'b' es igual
                 a '0' entonces retorna '0'.
@@ -80,7 +95,7 @@ namespace multiplication {
             }
             /* 
                 Caso recursivo: Si 'b' es mayor a '1' entonces retorna 'a'
-                mas el metodo Multiplicacion('a', 'b' menos '1').
+                mas el metodo CalcularMultiplicacion('a', 'b' menos '1').
 
                 Ejemplo:
 

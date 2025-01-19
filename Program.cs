@@ -5,7 +5,7 @@ namespace multiplication {
         static void Main(String[] args) {
 
             Console.Title = "Multiplication";
-
+            string a;
             long multiplicando;
             long multiplicador;
 
@@ -24,7 +24,7 @@ namespace multiplication {
                 while(true) {
                     Console.Write("Ingresa el multiplicando: ");
 
-                    if(long.TryParse(Console.ReadLine(), out multiplicando) && multiplicando <= 99999) {
+                    if(long.TryParse(a = Console.ReadLine(), out multiplicando) && multiplicando <= 99999) {
                         if(multiplicando >= 0) {
                             Console.WriteLine("> Valor ingresado correctamente\n");
                             break;
@@ -32,14 +32,21 @@ namespace multiplication {
                             Console.WriteLine("> El multiplicando no puede ser negativo...\n");
                         }
                     } else {
-                        Console.WriteLine("> Error: valor invalido...\n");
+                        Console.WriteLine("> Error: Valor invalido...\n");
+                    }
+
+                    if(multiplicando > 99999 || a.Length > 5) {
+                        Console.WriteLine("> Error: Exediste los digitos permitidos (max 5)...\n");
+                    }
+                    if(a.Length == 0){
+                        Console.WriteLine("Error: No se pueden ingresar espacios en blanco...\n");
                     }
                 }
 
                 while(true) {
                     Console.Write("Ingresa el multiplicador: ");
 
-                    if(long.TryParse(Console.ReadLine(), out multiplicador) && multiplicador <= 99999) {
+                    if(long.TryParse(a = Console.ReadLine(), out multiplicador) && multiplicador <= 99999) {
                         if(multiplicador >= 0) {
                             Console.WriteLine("> Valor ingresado correctamente\n");
                             break;
@@ -47,7 +54,14 @@ namespace multiplication {
                             Console.WriteLine("> El multiplicador no puede ser negativo...\n");
                         }
                     } else {
-                        Console.WriteLine("> Error: valor invalido...\n");
+                        Console.WriteLine("> Error: Valor invalido...\n");
+                    }
+
+                    if(multiplicador > 99999 || a.Length > 5) {
+                        Console.WriteLine("> Error: Exediste los digitos permitidos (max 5)...\n");
+                    }
+                    if(a.Length == 0){
+                        Console.WriteLine("Error: No se pueden ingresar espacios en blanco...\n");
                     }
                 }
 

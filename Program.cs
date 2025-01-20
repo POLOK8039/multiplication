@@ -21,7 +21,7 @@ namespace multiplication {
                 Console.WriteLine("Multiplicando x Multiplicador = Producto");
 
                 Console.SetCursorPosition(11,3);
-                Console.WriteLine("(Máximo 5 dígitos)\n");
+                Console.WriteLine("(Máximo 4 dígitos)\n");
 
 
                 while(true) {
@@ -36,17 +36,17 @@ namespace multiplication {
 
                     if(long.TryParse(input, out multiplicando)) {
 
-                        if(multiplicando >= 0 && multiplicando <= 99999) {
+                        if(multiplicando >= 0 && multiplicando <= 9999) {
                             Console.WriteLine("> Valor ingresado correctamente\n");
                             break;
-                        } else if(multiplicando > 99999) {
-                            Console.WriteLine("> Error: Excediste los dígitos permitidos (máx. 5)...\n");
+                        } else if(multiplicando > 9999) {
+                            Console.WriteLine("> Error: Excediste los dígitos permitidos (máx. 4)...\n");
                         } else {
                             Console.WriteLine("> Error: El Multiplicando no puede ser negativo...\n");
                         }
 
                     } else if(input.All(char.IsDigit)) {
-                        Console.WriteLine("> Error: Excediste los dígitos permitidos (máx. 5)...\n");
+                        Console.WriteLine("> Error: Excediste los dígitos permitidos (máx. 4)...\n");
                     } else {
                         Console.WriteLine("> Error: No se permiten valores alfanuméricos...\n");
                     }
@@ -65,17 +65,17 @@ namespace multiplication {
 
                     if(long.TryParse(input, out multiplicador)) {
 
-                        if(multiplicador >= 0 && multiplicador <= 99999) {
+                        if(multiplicador >= 0 && multiplicador <= 9999) {
                             Console.WriteLine("> Valor ingresado correctamente\n");
                             break;
-                        } else if(multiplicador > 99999) {
-                            Console.WriteLine("> Error: Excediste los dígitos permitidos (máx. 5)...\n");
+                        } else if(multiplicador > 9999) {
+                            Console.WriteLine("> Error: Excediste los dígitos permitidos (máx. 4)...\n");
                         } else {
                             Console.WriteLine("> Error: El Multiplicador no puede ser negativo...\n");
                         }
 
                     } else if(input.All(char.IsDigit)) {
-                        Console.WriteLine("> Error: Excediste los dígitos permitidos (máx. 5)...\n");
+                        Console.WriteLine("> Error: Excediste los dígitos permitidos (máx. 4)...\n");
                     } else {
                         Console.WriteLine("> Error: No se permiten valores alfanuméricos...\n");
                     }
@@ -101,7 +101,8 @@ namespace multiplication {
 
                 if(respuestaSn == "n") {
                     Console.Clear();
-                    Console.WriteLine("Good bye!");
+                    Console.SetCursorPosition(15,0);
+                    Console.WriteLine("Good Bye!");
                     return false;
                 }
 
